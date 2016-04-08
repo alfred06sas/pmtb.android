@@ -1,4 +1,4 @@
-package mobsoft.bme.hu.pmtbandroid;
+package mobsoft.bme.hu.pmtbandroid.ui.login;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -32,18 +32,20 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import mobsoft.bme.hu.pmtbandroid.R;
+
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, LoginScreen {
 
     /**
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
-
+    private LoginPresenter loginPresenter;
     /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
@@ -66,6 +68,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        loginPresenter = LoginPresenter.getInstance();
+        loginPresenter.attachView(this);
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -86,12 +92,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                // Reset errors.
+                mEmailView.setError(null);
+                mPasswordView.setError(null);
+
+                // Store values at the time of the login attempt.
+                String email = mEmailView.getText().toString();
+                String password = mPasswordView.getText().toString();
+                loginPresenter.checkLogIn(email, password);
             }
         });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+    }
+
+    @Override
+    public boolean login(String userName, String password){
+        return true;
     }
 
     private void populateAutoComplete() {
