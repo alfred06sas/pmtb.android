@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="mobsoft.bme.hu.pmtbandroid.LoginActivity"
+            android:name="mobsoft.bme.hu.pmtbandroid.ui.login.LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

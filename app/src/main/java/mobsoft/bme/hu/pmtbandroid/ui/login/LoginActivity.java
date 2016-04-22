@@ -32,6 +32,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import mobsoft.bme.hu.pmtbandroid.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -45,6 +47,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
+
+    @Inject
     private LoginPresenter loginPresenter;
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -69,7 +73,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginPresenter = LoginPresenter.getInstance();
         loginPresenter.attachView(this);
 
         // Set up the login form.

@@ -6,3 +6,4 @@ package mobsoft.bme.hu.pmtbandroid.ui.login;
 public interface LoginScreen {
     public boolean login(String userName, String password);
 }
+
