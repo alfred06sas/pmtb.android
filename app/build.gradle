@@ -19,6 +19,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        mock {
+            applicationId = "mobsoft.bme.hu.pmtbandroid.mock"
+        }
+
+        prod {
+            applicationId = "mobsoft.bme.hu.pmtbandroid.prod"
+        }
+    }
 }
 
 dependencies {

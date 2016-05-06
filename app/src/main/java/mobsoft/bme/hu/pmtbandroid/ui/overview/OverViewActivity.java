@@ -1,9 +1,15 @@
 package mobsoft.bme.hu.pmtbandroid.ui.overview;
 
+import android.support.v7.app.AppCompatActivity;
+import javax.inject.Inject;
 /**
  * Created by Csabi on 2016. 05. 05..
  */
-public class OverViewActivity implements OverViewScreen {
+public class OverViewActivity extends AppCompatActivity implements OverViewScreen {
+
+    @Inject
+    public OverViewPresenter activityPresenter;
+
     @Override
     public void getWorkTimes() {
 

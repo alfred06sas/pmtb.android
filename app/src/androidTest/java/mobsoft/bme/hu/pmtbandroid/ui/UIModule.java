@@ -10,6 +10,9 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import mobsoft.bme.hu.pmtbandroid.ui.login.LoginPresenter;
+import mobsoft.bme.hu.pmtbandroid.ui.overview.OverViewPresenter;
+import mobsoft.bme.hu.pmtbandroid.ui.projects.ProjectsPresenter;
+import mobsoft.bme.hu.pmtbandroid.ui.record.RecordActivity;
 
 @Module
 public class UIModule {
@@ -26,7 +29,27 @@ public class UIModule {
 
     @Provides
     @Singleton
-    public LoginPresenter provideMainPresenter() {
+    public LoginPresenter provideLoginPresenter() {
         return new LoginPresenter();
     }
+
+    @Provides
+    @Singleton
+    public OverViewPresenter provideOverViewPresenter() {
+        return new OverViewPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public ProjectsPresenter provideProjectsPresenter() {
+        return new ProjectsPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public RecordActivity provideRecordActivity() {
+        return new RecordActivity();
+    }
+
+
 }

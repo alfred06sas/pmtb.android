@@ -17,11 +17,19 @@ public class PMTBApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        injector =
-                DaggerPMTBApplicationComponent.builder().
-                        uIModule(
-                                new UIModule(this)
-                        ).build();
+        if (BuildConfig.FLAVOR.equals("mock")) {
+            injector =
+                    DaggerPMTBApplicationComponent.builder().
+                            uIModule(
+                                    new UIModule(this)
+                            ).build();
+        }else{
+            injector =
+                    DaggerMockPMTBApplicationComponent.builder().
+                            uIModule(
+                                    new UIModule(this)
+                            ).build();
+        }
     }
 
 }
